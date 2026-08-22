@@ -28,11 +28,11 @@ export default function AuthModal() {
       const pubKey = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || "pk_31ef620b03ceacafe92a3feade773e4c69edaa1495c7fde4ffc721291f070603";
 
       if (isLogin) {
-        // Login
-        const { token } = await medusaClient.auth.login("customer", "emailpass", {
+        const authRes: any = await medusaClient.auth.login("customer", "emailpass", {
           email,
           password
         });
+        const token = authRes.token || authRes;
         
         const res = await fetch(`${process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || "http://localhost:9000"}/store/customers/me`, {
           headers: {
@@ -48,11 +48,11 @@ export default function AuthModal() {
         closeAuthModal();
         router.push('/account');
       } else {
-        // Sign Up
-        const { token } = await medusaClient.auth.register("customer", "emailpass", {
+        const authRes: any = await medusaClient.auth.register("customer", "emailpass", {
           email,
           password
         });
+        const token = authRes.token || authRes;
         
         const res = await fetch(`${process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || "http://localhost:9000"}/store/customers`, {
           method: "POST",
