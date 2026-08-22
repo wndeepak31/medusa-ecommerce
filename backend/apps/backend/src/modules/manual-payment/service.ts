@@ -1,63 +1,47 @@
 import { AbstractPaymentProvider } from "@medusajs/framework/utils"
-import { PaymentProviderError, PaymentProviderSessionResponse, PaymentSessionStatus } from "@medusajs/framework/types"
+import { PaymentSessionStatus } from "@medusajs/framework/types"
 
 class ManualPaymentProvider extends AbstractPaymentProvider {
   static identifier = "manual"
 
-  async capturePayment(
-    paymentData: Record<string, unknown>
-  ): Promise<Record<string, unknown> | PaymentProviderError> {
+  async capturePayment(paymentData: any): Promise<any> {
     return { status: "captured" }
   }
 
-  async authorizePayment(
-    paymentSessionData: Record<string, unknown>,
-    context: Record<string, unknown>
-  ): Promise<
-    | PaymentProviderError
-    | {
-        status: PaymentSessionStatus
-        data: PaymentProviderSessionResponse["data"]
-      }
-  > {
+  async authorizePayment(input: any): Promise<any> {
     return { status: "authorized" as PaymentSessionStatus, data: {} }
   }
 
-  async cancelPayment(
-    paymentData: Record<string, unknown>
-  ): Promise<Record<string, unknown> | PaymentProviderError> {
+  async cancelPayment(paymentData: any): Promise<any> {
     return { status: "canceled" }
   }
 
-  async initiatePayment(
-    context: Record<string, unknown>
-  ): Promise<PaymentProviderError | PaymentProviderSessionResponse> {
+  async initiatePayment(input: any): Promise<any> {
     return { id: "dummy_session_" + Date.now(), data: {} }
   }
 
-  async deletePayment(
-    paymentSessionData: Record<string, unknown>
-  ): Promise<Record<string, unknown> | PaymentProviderError> {
+  async deletePayment(paymentSessionData: any): Promise<any> {
     return {}
   }
 
-  async getPaymentStatus(
-    paymentSessionData: Record<string, unknown>
-  ): Promise<PaymentSessionStatus> {
+  async getPaymentStatus(paymentSessionData: any): Promise<any> {
     return "authorized" as PaymentSessionStatus
   }
 
-  async refundPayment(
-    paymentData: Record<string, unknown>,
-    refundAmount: number
-  ): Promise<Record<string, unknown> | PaymentProviderError> {
+  async refundPayment(input: any): Promise<any> {
     return { status: "refunded" }
   }
 
-  async updatePayment(
-    context: Record<string, unknown>
-  ): Promise<PaymentProviderError | PaymentProviderSessionResponse> {
+  async updatePayment(input: any): Promise<any> {
     return { id: "dummy_session_updated", data: {} }
+  }
+
+  async retrievePayment(paymentSessionData: any): Promise<any> {
+    return {}
+  }
+
+  async getWebhookActionAndData(payload: any): Promise<any> {
+    return { action: "not_supported" }
   }
 }
 
