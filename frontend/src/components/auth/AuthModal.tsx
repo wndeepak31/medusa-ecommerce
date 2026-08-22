@@ -29,7 +29,7 @@ export default function AuthModal() {
 
       if (isLogin) {
         // Login
-        const token = await medusaClient.auth.login("customer", "emailpass", {
+        const { token } = await medusaClient.auth.login("customer", "emailpass", {
           email,
           password
         });
@@ -49,7 +49,7 @@ export default function AuthModal() {
         router.push('/account');
       } else {
         // Sign Up
-        const token = await medusaClient.auth.register("customer", "emailpass", {
+        const { token } = await medusaClient.auth.register("customer", "emailpass", {
           email,
           password
         });

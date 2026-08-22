@@ -58,7 +58,7 @@ export default async function CollectionPage(props: any) {
     console.error("Error fetching medusa data:", error);
   }
 
-  const fallbackTitle = handle.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  const fallbackTitle = handle.split('-').map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   const title = sanityCollection?.title || collection?.title || fallbackTitle;
 
   return (
