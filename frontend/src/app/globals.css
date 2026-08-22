@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Avenir", "Avenir Roman", var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-garamond), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  
+  --color-brand-green: #29463b; /* Brilliant Earth top banner color */
+  --color-brand-gray: #f7f7f7; /* Lagos background color */
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #555555;
+  --color-border: #e5e5e5;
+}
+
+@layer base {
+  body {
+    background-color: #ffffff;
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+  }
+}
+
+/* Custom Scrollbar for sleekness */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+  background: #cccccc; 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #999999; 
+}
