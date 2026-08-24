@@ -7,8 +7,8 @@
   },
   "scripts": {
     "dev": "turbo dev",
-    "build": "npm run build --workspace=@dtc/backend",
-    "start": "npm run start --workspace=@dtc/backend",
+    "build": "npm run build --workspace=@dtc/backend && mv apps/backend/.medusa apps/backend/medusa_build",
+    "start": "mv apps/backend/medusa_build apps/backend/.medusa || true && npm run start --workspace=@dtc/backend",
     "lint": "turbo lint",
     "test": "turbo test",
     "backend:seed": "turbo seed --filter=@dtc/backend",
